@@ -11,7 +11,7 @@ namespace GameCollection.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameController : ControllerBase
+    public class GameController : Controller  // ControllerBase does not haved view support so you can't return a json object
     {
         private readonly IUnitOfWork _unitOfWork;
         public GameController(IUnitOfWork unitOfWork)
@@ -58,6 +58,5 @@ namespace GameCollection.Controllers
             _unitOfWork.Save();
             return Json(new { success = true, message = "Delete Successful" });
         }
-    }
     }
 }
