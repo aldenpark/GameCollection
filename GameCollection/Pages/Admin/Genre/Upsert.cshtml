@@ -3,7 +3,7 @@
 @{
 }
 
-<form method="post" asp-action="Upsert">
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
     <div class="container">
         <div class="row px-2 mx-2 backgroundWhiteb border">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -25,7 +25,6 @@
                         <span class="text-danger" asp-validation-for="GenreObj.Name"></span>
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <div class="col-3">
                         <label asp-for="GenreObj.DisplayOrder"></label>
@@ -36,12 +35,37 @@
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="GenreObj.Description"></label>
+                    </div>
+                    <div class="col-9">
+                        <textarea class="form-control" asp-for="GenreObj.Description" id="txtDesc" style="height:200px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="GenreObj.Image"></label>
+                    </div>
+                    <div class="col-9">
+                        <input type="file" class="form-control" id="uploadBox" name="files" />
+                    </div>
+                </div>
+
 
                 <div class="form-group row">
                     <div class="col-9 offset-3">
                         <div class="row">
                             <div class="col-6">
-                                <button type="submit" class="btn btn-primary form-control">@(Model.GenreObj.Id != 0 ? "Update" :"Create")</button>
+                                @if (Model.GenreObj.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control" onclick="return ValidateInput()">Create</button>
+                                }
                             </div>
                             <div class="col-6">
                                 <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
@@ -51,7 +75,30 @@
                 </div>
 
             </div>
-
+            @if (Model.GenreObj != null)
+            {
+                <div class="col-4 p-4">
+                    <img src="@Model.GenreObj.Image" style="width:100%; border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            }
         </div>
     </div>
 </form>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+        });
+
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal('Error', 'Please select an Image', 'error')
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

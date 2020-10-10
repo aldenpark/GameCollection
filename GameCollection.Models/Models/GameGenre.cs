@@ -16,5 +16,7 @@ namespace GameCollection.Models
 
         [Display(Name = "Display Order")]
         public int DisplayOrder { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
     }
 }

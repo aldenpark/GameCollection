@@ -28,7 +28,7 @@ namespace GameCollection.DataAccess.Data.Repository
 
         public void Update(GameGenre Genre)
         {
-            var objFromDb = _db.Game.FirstOrDefault(s => s.Id == Genre.Id);
+            var objFromDb = _db.GameGenre.FirstOrDefault(s => s.Id == Genre.Id);
 
             objFromDb.Name = Genre.Name;
 

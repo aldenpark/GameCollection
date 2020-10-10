@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\imgaes\" />
+    <Folder Include="wwwroot\images\gamegenreitems\" />
   </ItemGroup>
 
 </Project>
