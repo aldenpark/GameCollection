@@ -1,48 +1,153 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GameCollection</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/lightgallery.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/css/swiper.css">
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">GameCollection</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+    <div class="site-wrap">
+
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - GameCollection - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <div class="site-mobile-menu-body"></div>
         </div>
-    </footer>
+
+        <header class="site-navbar py-3" role="banner">
+
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <div class="col-6 col-xl-2" data-aos="fade-down">
+                        <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">Game Collection</a></h1>
+                    </div>
+                    <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+                        <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+
+                            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                                <li class="active"><a asp-area="" asp-page="/Index">Home</a></li>
+                                <li class="has-children">
+                                    <a href="single.html">Gallery</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Nature</a></li>
+                                        <li><a href="#">Portrait</a></li>
+                                        <li><a href="#">People</a></li>
+                                        <li><a href="#">Architecture</a></li>
+                                        <li><a href="#">Animals</a></li>
+                                        <li><a href="#">Sports</a></li>
+                                        <li><a href="#">Travel</a></li>
+                                        <li class="has-children">
+                                            <a href="#">Sub Menu</a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">Menu One</a></li>
+                                                <li><a href="#">Menu Two</a></li>
+                                                <li><a href="#">Menu Three</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a></li>
+                                <li>
+                                    <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                        <button id="logout" type="submit" class="btn btn-link">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+                        <div class="d-none d-xl-inline-block">
+                            <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+                                <li>
+                                    <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                                </li>
+                                <li>
+                                    <a href="#" class="pl-3 pr-3"><span class="icon-youtube-play"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </header>
+
+
+        <div class="container-fluid" data-aos="fade" data-aos-delay="500">
+            @*<main role="main" class="pb-3"> *@
+            @RenderBody()
+            @*</main>*@
+        </div>
+
+        <div class="footer py-4">
+            <div class="container-fluid text-center">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+        </div>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <script src="~/js/jquery.countdown.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/js/swiper.min.js"></script>
+    <script src="~/js/aos.js"></script>
+
+    <script src="~/js/picturefill.min.js"></script>
+    <script src="~/js/lightgallery-all.min.js"></script>
+    <script src="~/js/jquery.mousewheel.min.js"></script>
+
+    <script src="~/js/main.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)

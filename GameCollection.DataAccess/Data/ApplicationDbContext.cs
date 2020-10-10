@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using GameCollection.Models;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace GameCollection.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    // mapping of models to the tables in the db, also using IdentityDbContext for indentify that extends dbContext
+    public class ApplicationDbContext : IdentityDbContext //DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
