@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCollection", "GameCollection\GameCollection.csproj", "{173341C9-8797-4342-8BB5-6A99C1C25CAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCollection", "GameCollection\GameCollection.csproj", "{173341C9-8797-4342-8BB5-6A99C1C25CAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCollection.DataAccess", "GameCollection.DataAccess\GameCollection.DataAccess.csproj", "{B01B2460-2B9B-447C-ACA5-6EA329D0A20C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCollection.DataAccess", "GameCollection.DataAccess\GameCollection.DataAccess.csproj", "{B01B2460-2B9B-447C-ACA5-6EA329D0A20C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCollection.Models", "GameCollection.Models\GameCollection.Models.csproj", "{383594F7-D951-4E8B-964A-8C52103B044A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCollection.Models", "GameCollection.Models\GameCollection.Models.csproj", "{383594F7-D951-4E8B-964A-8C52103B044A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCollection.Utility", "GameCollection.Utility\GameCollection.Utility.csproj", "{042E4086-B64E-4E31-8032-99CA43366328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameCollection.Utility", "GameCollection.Utility\GameCollection.Utility.csproj", "{042E4086-B64E-4E31-8032-99CA43366328}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -23,5 +23,6 @@ namespace GameCollection.DataAccess.Data
         public DbSet<GameCollection.Models.PurchaseHistory> PurchaseHistory { get; set; }
         public DbSet<GameCollection.Models.Comment> Comment { get; set; }
         public DbSet<GameCollection.Models.ReviewerGameScore> ReviewerGameScore { get; set; }
+        public DbSet<GameCollection.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 }

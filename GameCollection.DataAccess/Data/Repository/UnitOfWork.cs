@@ -20,6 +20,17 @@ namespace GameCollection.DataAccess.Data.Repository
 
         public IReviewerGameScoreRepository ReviewerGameScore { get; private set; }
 
+        public UnitOfWork(ApplicationDbContext db)
+        {
+            _db = db;
+            Game = new GameRepository(_db);
+            GameGenre = new GameGenreRepository(_db);
+            Customer = new CustomerRepository(_db);
+            PurchaseHistory = new PurchaseHistoryRepository(_db);
+            Comment = new CommentRepository(_db);
+            ReviewerGameScore = new ReviewerGameScoreRepository(_db);
+        }
+
         public void Dispose()
         {
             _db.Dispose();

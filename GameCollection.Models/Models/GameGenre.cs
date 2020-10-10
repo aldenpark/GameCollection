@@ -13,5 +13,8 @@ namespace GameCollection.Models
         [Required]
         [Display(Name = "Genre")]
         public string Name { get; set; }
+
+        [Display(Name = "Display Order")]
+        public int DisplayOrder { get; set; }
     }
 }

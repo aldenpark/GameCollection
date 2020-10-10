@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using GameCollection.Utility
+@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -25,6 +26,13 @@
     <link rel="stylesheet" href="~/css/aos.css">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/site.css" />
+
+
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/toastr.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+
+
 </head>
 <body>
 
@@ -52,32 +60,36 @@
 
                             <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
                                 <li class="active"><a asp-area="" asp-page="/Index">Home</a></li>
-                                <li class="has-children">
-                                    <a href="single.html">Gallery</a>
-                                    <ul class="dropdown">
-                                        <li><a href="#">Nature</a></li>
-                                        <li><a href="#">Portrait</a></li>
-                                        <li><a href="#">People</a></li>
-                                        <li><a href="#">Architecture</a></li>
-                                        <li><a href="#">Animals</a></li>
-                                        <li><a href="#">Sports</a></li>
-                                        <li><a href="#">Travel</a></li>
-                                        <li class="has-children">
-                                            <a href="#">Sub Menu</a>
-                                            <ul class="dropdown">
-                                                <li><a href="#">Menu One</a></li>
-                                                <li><a href="#">Menu Two</a></li>
-                                                <li><a href="#">Menu Three</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a></li>
-                                <li>
-                                    <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-                                        <button id="logout" type="submit" class="btn btn-link">Logout</button>
-                                    </form>
-                                </li>
+
+                                @if (User.IsInRole(SD.AdminRole))
+                                {
+                                    <li class="has-children">
+                                        <a href="single.html">Admin</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/Admin/Genre/Index">Game Genre</a></li>
+                                            <li><a href="/Admin/Catalog/Index">Game Catalog</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+
+                                    <li><a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a></li>
+                                    <li>
+                                        <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                                            <button id="logout" type="submit" class="btn btn-link">Logout</button>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                    </li>
+                                }
                             </ul>
                         </nav>
                     </div>
@@ -121,7 +133,6 @@
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;
-                    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                     <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
@@ -149,6 +160,12 @@
 
     <script src="~/js/main.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=keneke8rqjpwx7ysu7j619yoyichqmezv054l1fkb26obsnb"></script>
+
 
     @RenderSection("Scripts", required: false)
 </body>
