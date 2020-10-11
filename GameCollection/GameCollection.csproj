@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\gamegenreitems\" />
+    <Folder Include="wwwroot\images\gameitems\" />
   </ItemGroup>
 
 </Project>

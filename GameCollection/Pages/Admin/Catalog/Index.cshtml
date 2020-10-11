@@ -1,5 +1,5 @@
 ﻿@page
-@model GameCollection.Pages.Admin.Genre.IndexModel
+@model GameCollection.Pages.Admin.Catalog.IndexModel
 @{
 }
 
@@ -11,11 +11,14 @@
         </div>
     </div>
 </div>
-<table class="table table-dark" id="DT_load">
+<table class="table table-striped table-dark" id="DT_load">
     <thead>
         <tr>
             <th class="text-white">
-                Game Genre
+                Game
+            </th>
+            <th class="text-white">
+                Genre
             </th>
             <th class="text-white">
                 Display Order
@@ -25,5 +28,5 @@
     </thead>
 </table>
 @section Scripts{
-    <script src="~/js/gamegenre.js"></script>
+    <script src="~/js/catalog.js"></script>
 }

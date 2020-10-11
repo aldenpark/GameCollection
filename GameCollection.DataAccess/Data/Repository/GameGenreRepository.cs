@@ -31,6 +31,9 @@ namespace GameCollection.DataAccess.Data.Repository
             var objFromDb = _db.GameGenre.FirstOrDefault(s => s.Id == Genre.Id);
 
             objFromDb.Name = Genre.Name;
+            objFromDb.DisplayOrder = Genre.DisplayOrder;
+            objFromDb.Description = Genre.Description;
+            objFromDb.Image = Genre.Image;
 
             _db.SaveChanges();
         }

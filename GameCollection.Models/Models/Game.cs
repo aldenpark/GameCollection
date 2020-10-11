@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameCollection.Models
 {
@@ -26,5 +27,9 @@ namespace GameCollection.Models
 
         [Display(Name = "Description")]
         public string Description { get; set; }
+
+        [ForeignKey("GenreId")]
+        public virtual GameGenre GameGenre { get; set; }
+
     }
 }

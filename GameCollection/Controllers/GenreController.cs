@@ -21,7 +21,7 @@ namespace GameCollection.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(new { data = _unitOfWork.GameGenre.GetAll() });
+            return Json(new { data = _unitOfWork.GameGenre.GetAll(orderBy: o => o.OrderBy(i => i.DisplayOrder)) });
         }
 
         [HttpDelete("{id}")]

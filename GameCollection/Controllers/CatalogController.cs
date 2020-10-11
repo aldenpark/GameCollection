@@ -11,10 +11,10 @@ namespace GameCollection.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameController : Controller  // ControllerBase does not haved view support so you can't return a json object
+    public class CatalogController : Controller  // ControllerBase does not haved view support so you can't return a json object
     {
         private readonly IUnitOfWork _unitOfWork;
-        public GameController(IUnitOfWork unitOfWork)
+        public CatalogController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -23,7 +23,16 @@ namespace GameCollection.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(new { data = _unitOfWork.Game.GetAll() });
+            var gameObj = _unitOfWork.Game.GetAll(orderBy: o => o.OrderBy(i => i.DisplayOrder));
+            //var gameGenreObj = _unitOfWork.GameGenre.GetAll();
+            //foreach(var g in gameObj)
+            //{
+            //    var Genre = gameGenreObj.Where(r => r.Id == g.GenreId).FirstOrDefault();
+            //    g.GameGenre = Genre.Name;  Couldn't get this to work either...
+            //}
+
+            //return Json(new { data = _unitOfWork.Game.GetAll(null,null,"Game,GameGenre") }); // eagerloading (Got a wierd error and couldn't get it to work)
+            return Json(new { data = gameObj }); // eagerloading
         }
 
         // GET api/<GameController>/5

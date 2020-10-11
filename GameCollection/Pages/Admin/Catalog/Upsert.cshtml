@@ -1,0 +1,113 @@
+﻿@page
+@model GameCollection.Pages.Admin.Catalog.UpsertModel
+@{
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row px-2 mx-2 backgroundWhiteb border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-12 px-3" style="border-bottom:1px solid #325d88">
+                <h2 class="text-primary">@(Model.GameObj.Game.Id != 0 ? "Update" :"Create") Genre</h2>
+            </div>
+            @if (Model.GameObj.Game.Id != 0)
+            {
+                <input type="hidden" asp-for="GameObj.Game.Id" />
+            }
+
+        <div class="col-8 pt-3">
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="GameObj.Game.Name"></label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" asp-for="GameObj.Game.Name" />
+                    <span class="text-danger" asp-validation-for="GameObj.Game.Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="GameObj.Game.GenreId"></label>
+                </div>
+                <div class="col-9">
+                    @Html.DropDownListFor(m => m.GameObj.Game.GenreId, Model.GameObj.GenreList, " - Select Genre", new { @class = "form-control" })
+                    <span class="text-danger" asp-validation-for="GameObj.Game.GenreId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="GameObj.Game.DisplayOrder"></label>
+                </div>
+                <div class="col-9">
+                    <input class="form-control" asp-for="GameObj.Game.DisplayOrder" />
+                    <span class="text-danger" asp-validation-for="GameObj.Game.DisplayOrder"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="GameObj.Game.Description"></label>
+                </div>
+                <div class="col-9">
+                    <textarea class="form-control" asp-for="GameObj.Game.Description" id="txtDesc" style="height:200px;"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="GameObj.Game.Image"></label>
+                </div>
+                <div class="col-9">
+                    <input type="file" class="form-control" id="uploadBox" name="files" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-9 offset-3">
+                    <div class="row">
+                        <div class="col-6">
+                            @if (Model.GameObj.Game.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-primary form-control">Update</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary form-control" onclick="return ValidateInput()">Create</button>
+                            }
+                        </div>
+                        <div class="col-6">
+                            <a asp-page="./Index" class="btn btn-success form-control">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+            @if (Model.GameObj.Game != null)
+            {
+                <div class="col-4 p-4">
+                    <img src="@Model.GameObj.Game.Image" style="width:100%; border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            }
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists preview hr anchor pagebreak searchreplace code media image link table',
+            menubar: 'file edit format'
+        });
+
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal('Error', 'Please select an Image', 'error')
+                return false;
+            }
+            return true;
+        }
+    </script>
+}

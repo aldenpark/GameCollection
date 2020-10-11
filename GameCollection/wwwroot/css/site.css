@@ -176,3 +176,13 @@ body {
 #logreg-forms .form-reset, #logreg-forms .form-signup {
     display: none;
 }
+
+
+.bootstrap-select.btn-group .dropdown-menu li a:hover {
+    color: whitesmoke !important;
+    background: #bf5279 !important;
+}
+
+option {
+    background-color: #000;
+}
