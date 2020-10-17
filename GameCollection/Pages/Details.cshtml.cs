@@ -22,12 +22,12 @@ namespace GameCollection.Pages
         }
 
         [BindProperty]
-        public IEnumerable<Game> GameObjList { get; set; }
+        public IEnumerable<CatalogGenre> GameObjList { get; set; }
 
         public void OnGet(int id)
         {
             //GameObj = _unitOfWork.Game.GetFirstorDefault(includeProperties: "Game,GameGenre", filter: g => g.GenreId == id);  // I'm doing something wrong because I can't geth the includeProperties to work
-            GameObjList = _unitOfWork.Game.GetAll(filter: g => g.Id == id, orderBy: o => o.OrderBy(i => i.DisplayOrder), includeProperties: "CatalogGenre");
+            GameObjList = _unitOfWork.CatalogGenre.GetAll(filter: g => g.GenreId == id, includeProperties: "Game");
         }
 
     }

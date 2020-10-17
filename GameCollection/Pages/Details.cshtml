@@ -20,13 +20,13 @@
         </div>
 
         <div class="row" id="lightgallery">
-            @foreach (var game in Model.GameObjList)
+            @foreach (var list in Model.GameObjList)
             {
-            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="@game.Image" data-sub-html="@Html.Raw(game.Description)">
-                <img src="@game.Image" alt="IMage" class="img-fluid">
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="@list.Game.Image" data-sub-html="@Html.Raw(list.Game.Description)">
+                <img src="@list.Game.Image" alt="IMage" class="img-fluid">
                 <p>&nbsp;</p>
-                <h3>@game.Name</h3>
-                @Html.Raw(game.Description)
+                <h3>@list.Game.Name</h3>
+                @Html.Raw(list.Game.Description)
                 <p>&nbsp;</p>
             </div>
             }
