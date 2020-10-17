@@ -17,7 +17,5 @@ namespace GameCollection.Models
         public virtual Game Game { get; set; }
         [ForeignKey("GenreId")]
         public virtual GameGenre Genre { get; set; }
-
-
     }
 }

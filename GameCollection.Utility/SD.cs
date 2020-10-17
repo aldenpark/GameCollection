@@ -9,6 +9,6 @@ namespace GameCollection.Utility
         public const string AdminRole = "Admin";
         public const string CustomerRole = "Customer";
 
-        public const string SiteSessionId = "GamingCatalogSessionId"; // SessionNameId
+        public const string GameHistorySessionId = "GamingCatalogHistorySessionId"; // SessionNameId
     }
 }

@@ -26,7 +26,6 @@ namespace GameCollection.Pages
 
         public void OnGet(int id)
         {
-            //GameObj = _unitOfWork.Game.GetFirstorDefault(includeProperties: "Game,GameGenre", filter: g => g.GenreId == id);  // I'm doing something wrong because I can't geth the includeProperties to work
             GameObjList = _unitOfWork.CatalogGenre.GetAll(filter: g => g.GenreId == id, includeProperties: "Game");
         }
 

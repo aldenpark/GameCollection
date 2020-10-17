@@ -22,14 +22,27 @@
         <div class="row" id="lightgallery">
             @foreach (var list in Model.GameObjList)
             {
-            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item" data-aos="fade" data-src="@list.Game.Image" data-sub-html="@Html.Raw(list.Game.Description)">
-                <img src="@list.Game.Image" alt="IMage" class="img-fluid">
-                <p>&nbsp;</p>
-                <h3>@list.Game.Name</h3>
-                @Html.Raw(list.Game.Description)
-                <p>&nbsp;</p>
-            </div>
+                <div id="@list.Game.Id" class="col-sm-6 col-md-4 col-lg-3 col-xl-3 item game" data-aos="fade" data-src="@list.Game.Image" data-sub-html="@Html.Raw(list.Game.Description)">
+                    <img src="@list.Game.Image" alt="IMage" class="img-fluid">
+                    <p>&nbsp;</p>
+                    <h3>@list.Game.Name</h3>
+                    @Html.Raw(list.Game.Description)
+                    <p>&nbsp;</p>
+                </div>
             }
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".game").click(function (event) {
+                var id = $(this).attr("id");
+                $.get("/api/game/" + id, function (data) {
+
+                })
+            });
+        });
+    </script>
+}
