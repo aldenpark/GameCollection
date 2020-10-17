@@ -12,8 +12,7 @@ function loadList() {
             "data": "json"
         },
         "columns": [
-            { data: "name", width: "40%" },
-            { data: "gameGenre", width: "20%" },
+            { data: "name", width: "60%" },
             { data: "displayOrder", width: "15%" },
             {
                 data: "id",

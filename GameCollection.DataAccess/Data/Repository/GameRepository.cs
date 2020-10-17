@@ -21,7 +21,6 @@ namespace GameCollection.DataAccess.Data.Repository
             var objFromDb = _db.Game.FirstOrDefault(s => s.Id == Game.Id);
 
             objFromDb.Name = Game.Name;
-            objFromDb.GenreId = Game.GenreId;
             objFromDb.DisplayOrder = Game.DisplayOrder;
             objFromDb.Image = Game.Image;
             objFromDb.Description = Game.Description;

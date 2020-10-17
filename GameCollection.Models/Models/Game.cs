@@ -15,6 +15,7 @@ namespace GameCollection.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [NotMapped] // don't map to field in db
         [Required]
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
@@ -28,8 +29,10 @@ namespace GameCollection.Models
         [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [ForeignKey("GenreId")]
-        public virtual GameGenre GameGenre { get; set; }
+        public ICollection<CatalogGenre> CatalogGenre { get; set; }
+
+        //[ForeignKey("GenreId")]
+        //public virtual GameGenre GameGenre { get; set; }
 
     }
 }

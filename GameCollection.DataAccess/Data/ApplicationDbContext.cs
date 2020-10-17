@@ -19,10 +19,36 @@ namespace GameCollection.DataAccess.Data
 
         public DbSet<GameCollection.Models.Game> Game { get; set; }
         public DbSet<GameCollection.Models.GameGenre> GameGenre { get; set; }
+        public DbSet<GameCollection.Models.CatalogGenre> CatalogGenre { get; set; }
         public DbSet<GameCollection.Models.Customer> Customer { get; set; }
         public DbSet<GameCollection.Models.PurchaseHistory> PurchaseHistory { get; set; }
         public DbSet<GameCollection.Models.Comment> Comment { get; set; }
         public DbSet<GameCollection.Models.ReviewerGameScore> ReviewerGameScore { get; set; }
         public DbSet<GameCollection.Models.ApplicationUser> ApplicationUser { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CatalogGenre>()
+                .HasKey(c => new { c.GameId, c.GenreId });
+        }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder) // fluent api
+        //{
+        //    modelBuilder.Entity<CatalogGenre>()
+        //        .HasKey(x => new { x.GameId, x.GenreId });
+
+        //    modelBuilder.Entity<CatalogGenre>()
+        //        .HasOne(x => x.Game)
+        //        .WithMany(y => y.CatalogGenre)
+        //        .HasForeignKey(y => y.GenreId);
+
+        //    modelBuilder.Entity<CatalogGenre>()
+        //        .HasOne(x => x.Genre)
+        //        .WithMany(y => y.CatalogGenre)
+        //        .HasForeignKey(y => y.GameId);
+
+        //}
     }
 }

@@ -30,7 +30,7 @@
                     <label asp-for="GameObj.Game.GenreId"></label>
                 </div>
                 <div class="col-9">
-                    @Html.DropDownListFor(m => m.GameObj.Game.GenreId, Model.GameObj.GenreList, " - Select Genre", new { @class = "form-control" })
+                    @Html.ListBoxFor(m => m.GameObj.SelectedGenres, Model.GameObj.GenreList, new { @class = "form-control" })
                     <span class="text-danger" asp-validation-for="GameObj.Game.GenreId"></span>
                 </div>
             </div>

@@ -12,6 +12,8 @@ namespace GameCollection.DataAccess.Data.Repository
 
         public IGameGenreRepository GameGenre { get; private set; }
 
+        public ICatalogGenreRepository CatalogGenre { get; private set; }
+
         public ICustomerRepository Customer { get; private set; }
 
         public IPurchaseHistoryRepository PurchaseHistory { get; private set; }
@@ -25,6 +27,7 @@ namespace GameCollection.DataAccess.Data.Repository
             _db = db;
             Game = new GameRepository(_db);
             GameGenre = new GameGenreRepository(_db);
+            CatalogGenre = new CatalogGenreRepository(_db);
             Customer = new CustomerRepository(_db);
             PurchaseHistory = new PurchaseHistoryRepository(_db);
             Comment = new CommentRepository(_db);

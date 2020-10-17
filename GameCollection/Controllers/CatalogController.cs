@@ -23,7 +23,7 @@ namespace GameCollection.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var gameObj = _unitOfWork.Game.GetAll(orderBy: o => o.OrderBy(i => i.DisplayOrder));
+
             //var gameGenreObj = _unitOfWork.GameGenre.GetAll();
             //foreach(var g in gameObj)
             //{
@@ -31,7 +31,8 @@ namespace GameCollection.Controllers
             //    g.GameGenre = Genre.Name;  Couldn't get this to work either...
             //}
 
-            //return Json(new { data = _unitOfWork.Game.GetAll(null,null,"Game,GameGenre") }); // eagerloading (Got a wierd error and couldn't get it to work)
+            //var gameObj = _unitOfWork.Game.GetAll(orderBy: o => o.OrderBy(i => i.DisplayOrder), includeProperties: "GameGenre");
+            var gameObj = _unitOfWork.Game.GetAll(orderBy: o => o.OrderBy(i => i.DisplayOrder));
             return Json(new { data = gameObj }); // eagerloading
         }
 

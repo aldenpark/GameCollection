@@ -8,6 +8,7 @@ namespace GameCollection.DataAccess.Data.Repository.IRepository
     {
         IGameRepository Game { get; }
         IGameGenreRepository GameGenre { get; }
+        ICatalogGenreRepository CatalogGenre { get; }
         ICustomerRepository Customer { get; }
         IPurchaseHistoryRepository PurchaseHistory { get; }
         ICommentRepository Comment { get; }
