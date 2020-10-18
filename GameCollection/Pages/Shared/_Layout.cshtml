@@ -76,16 +76,16 @@
                                         </ul>
                                     </li>
                                 }
-                                @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.GameHistorySessionId) != null)
+                                @{ List<int> history = SessionHelper.GetObjectFromJson<List<int>>(Context.Session, SD.GameHistorySessionId); }
+                                @if (history != null)
                                 {
                                     <li class="has-children">
                                         <a href="#">History</a>
                                         <ul class="dropdown">
-                                            @{ List<int> history = SessionHelper.GetObjectFromJson<List<int>>(Context.Session, SD.GameHistorySessionId); }
                                             @foreach (var historyid in history)
                                             {
                                                 var Game = _unitOfWork.Game.GetFirstorDefault(u => u.Id == @historyid);
-                                                <li><a href="/GameDetails/@Game.Id">@Game.Name</a></li>
+                                                <li><a href="/GameDetails?id=@Game.Id">@Game.Name</a></li>
                                             }
                                         </ul>
                                     </li>

@@ -1,0 +1,31 @@
+﻿@page
+@model GameCollection.Pages.GameDetailsModel
+@{
+}
+
+<div class="site-section" data-aos="fade">
+    <div class="container-fluid">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-7">
+                <div class="row mb-5">
+                    <div class="col-12 ">
+                        <h2 class="site-section-heading text-center">@Model.GameObj.Name</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row" id="lightgallery">
+            <div class="col"></div>
+            <div class="col-6 text-center">
+                <img src="@Model.GameObj.Image" alt="IMage" class="img-fluid">
+                <p>&nbsp;</p>
+                @Html.Raw(Model.GameObj.Description)
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</div>
