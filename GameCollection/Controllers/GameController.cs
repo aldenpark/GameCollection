@@ -46,7 +46,10 @@ namespace GameCollection.Controllers
             {
                 GameHistory = new List<int>();
             }
-            GameHistory.Add(id);
+            if(!GameHistory.Any(g => g == id)) // check for duplicates
+            {
+                GameHistory.Add(id);
+            }
             SessionHelper.SetObjectAsJson(HttpContext.Session, SD.GameHistorySessionId, GameHistory);
         }
 

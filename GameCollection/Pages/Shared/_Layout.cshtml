@@ -1,6 +1,10 @@
 ﻿@using GameCollection.Utility
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@using GameCollection.DataAccess.Data.Repository.IRepository;
 
+@inject IUnitOfWork _unitOfWork
+@inject IHttpContextAccessor HttpContextAccessor
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
@@ -54,7 +58,7 @@
                 <div class="row align-items-center">
 
                     <div class="col-6 col-xl-2" data-aos="fade-down">
-                        <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">Game Collection</a></h1>
+                        <h1 class="mb-0"><a href="/Index" class="text-white h2 mb-0">Game Collection</a></h1>
                     </div>
                     <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
                         <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
@@ -69,6 +73,20 @@
                                         <ul class="dropdown">
                                             <li><a href="/Admin/Genre/Index">Game Genre</a></li>
                                             <li><a href="/Admin/Catalog/Index">Game Catalog</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                                @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.GameHistorySessionId) != null)
+                                {
+                                    <li class="has-children">
+                                        <a href="#">History</a>
+                                        <ul class="dropdown">
+                                            @{ List<int> history = SessionHelper.GetObjectFromJson<List<int>>(Context.Session, SD.GameHistorySessionId); }
+                                            @foreach (var historyid in history)
+                                            {
+                                                var Game = _unitOfWork.Game.GetFirstorDefault(u => u.Id == @historyid);
+                                                <li><a href="/GameDetails/@Game.Id">@Game.Name</a></li>
+                                            }
                                         </ul>
                                     </li>
                                 }
@@ -163,25 +181,25 @@
 
 
     @*<script src="~/js/jquery-3.3.1.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/bootstrap.bundle.min.js"></script>
 
-    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="~/js/jquery-ui.js"></script>
-    <script src="~/js/popper.min.js"></script>
-    <script src="~/js/owl.carousel.min.js"></script>
-    <script src="~/js/jquery.stellar.min.js"></script>
-    <script src="~/js/jquery.countdown.min.js"></script>
-    <script src="~/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/js/bootstrap-datepicker.min.js"></script>
-    <script src="~/js/swiper.min.js"></script>
-    <script src="~/js/aos.js"></script>
+        <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="~/js/jquery-ui.js"></script>
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/owl.carousel.min.js"></script>
+        <script src="~/js/jquery.stellar.min.js"></script>
+        <script src="~/js/jquery.countdown.min.js"></script>
+        <script src="~/js/jquery.magnific-popup.min.js"></script>
+        <script src="~/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/js/swiper.min.js"></script>
+        <script src="~/js/aos.js"></script>
 
-    <script src="~/js/picturefill.min.js"></script>
-    <script src="~/js/lightgallery-all.min.js"></script>
-    <script src="~/js/jquery.mousewheel.min.js"></script>
+        <script src="~/js/picturefill.min.js"></script>
+        <script src="~/js/lightgallery-all.min.js"></script>
+        <script src="~/js/jquery.mousewheel.min.js"></script>
 
-    <script src="~/js/main.js"></script>*@
+        <script src="~/js/main.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
