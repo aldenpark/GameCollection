@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameCollection.Controllers;
 using GameCollection.DataAccess.Data;
 using GameCollection.DataAccess.Data.Repository;
 using GameCollection.DataAccess.Data.Repository.IRepository;
@@ -76,6 +77,7 @@ namespace GameCollection
                 options.SlidingExpiration = true;
             });
 
+            //services.AddScoped<GameController, GameController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

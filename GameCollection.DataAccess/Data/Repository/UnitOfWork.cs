@@ -22,6 +22,8 @@ namespace GameCollection.DataAccess.Data.Repository
 
         public IReviewerGameScoreRepository ReviewerGameScore { get; private set; }
 
+        public IGameHistoryRepository GameHistory { get; set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -32,6 +34,7 @@ namespace GameCollection.DataAccess.Data.Repository
             PurchaseHistory = new PurchaseHistoryRepository(_db);
             Comment = new CommentRepository(_db);
             ReviewerGameScore = new ReviewerGameScoreRepository(_db);
+            GameHistory = new GameHistoryRepository(_db);
         }
 
         public void Dispose()

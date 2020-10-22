@@ -24,11 +24,16 @@ namespace GameCollection.DataAccess.Data
         public DbSet<GameCollection.Models.PurchaseHistory> PurchaseHistory { get; set; }
         public DbSet<GameCollection.Models.Comment> Comment { get; set; }
         public DbSet<GameCollection.Models.ReviewerGameScore> ReviewerGameScore { get; set; }
+        public DbSet<GameHistory> GameHistory { get; set; }
         public DbSet<GameCollection.Models.ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            // Customize the ASP.NET Core Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Core Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(builder);
+
 
             modelBuilder.Entity<CatalogGenre>()
                 .HasKey(c => new { c.GameId, c.GenreId });

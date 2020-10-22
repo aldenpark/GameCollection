@@ -13,6 +13,7 @@ namespace GameCollection.DataAccess.Data.Repository.IRepository
         IPurchaseHistoryRepository PurchaseHistory { get; }
         ICommentRepository Comment { get; }
         IReviewerGameScoreRepository ReviewerGameScore { get; }
+        IGameHistoryRepository GameHistory { get; }
         void Save();
     }
 }

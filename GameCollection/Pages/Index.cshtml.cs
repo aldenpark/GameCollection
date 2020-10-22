@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GameCollection.Controllers;
 using GameCollection.DataAccess.Data.Repository.IRepository;
 using GameCollection.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,7 @@ namespace GameCollection.Pages
         public void OnGet()
         {
             GameGenreList = _unitOfWork.GameGenre.GetAll(null, q => q.OrderBy(c => c.DisplayOrder), null);
+            //var gameController = new GameController();
         }
     }
 }
